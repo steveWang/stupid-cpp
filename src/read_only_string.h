@@ -17,40 +17,31 @@ class ReadOnlyString {
  public:
   ReadOnlyString() = default;
 
-  ReadOnlyString(std::string_view sv) : data_(CopyString(sv)), size_(sv.size()) {}
+  ReadOnlyString(std::string_view sv) : data_(CopyString(sv)) {}
 
   ReadOnlyString(const char* data) : ReadOnlyString(std::string_view(data)) {}
 
-  explicit ReadOnlyString(const ReadOnlyString& s) : ReadOnlyString(std::string_view(s.data_, s.size_)) {}
+  explicit ReadOnlyString(const ReadOnlyString& s) : ReadOnlyString(s.data_) {}
 
   ~ReadOnlyString() {
-    if (data_ != nullptr) {
-      delete data_;
+    if (data_.data() != nullptr) {
+      delete data_.data();
     }
   }
 
   std::string_view* operator&() {
-    return reinterpret_cast<std::string_view*>(this);
+    return &data_;
   }
 
-  // private:
-  inline const char* CopyString(std::string_view sv) {
+ private:
+  inline const std::string_view CopyString(std::string_view sv) {
     // No NUL-terminated string for you, C-strings are bad mojo
     char* str = new char[sv.size()];
     std::memcpy(str, sv.data(), sv.size());
-    return str;
+    return std::string_view(str, sv.size());
   }
 
-  // This is definitely portable code.
-  #ifdef _LIBCPP_VERSION
-  const char* data_ = nullptr;
-  const size_t size_ = 0;
-  #else
-  // Assume libstdc++ memory layout, because there are no other stdlib
-  // implementations, right?
-  const size_t size_ = 0;
-  const char* data_ = nullptr;
-  #endif
+  std::string_view data_;
 };
 
 }  // namespace stupid
