@@ -15,12 +15,10 @@ namespace stupid {
 // We could implement SSO-15 here, but I can't be bothered to do so.
 class ReadOnlyString {
  public:
-  ReadOnlyString() = default;
-
-  ReadOnlyString(std::string_view sv) : data_(CopyString(sv)) {}
-
-  ReadOnlyString(const char* data) : ReadOnlyString(std::string_view(data)) {}
-
+  constexpr ReadOnlyString() = default;
+  constexpr ReadOnlyString(std::string_view sv) : data_(CopyString(sv)) {}
+  constexpr ReadOnlyString(const char* data)
+      : ReadOnlyString(std::string_view(data)) {}
   explicit ReadOnlyString(const ReadOnlyString& s) : ReadOnlyString(s.data_) {}
 
   ~ReadOnlyString() {
@@ -29,9 +27,7 @@ class ReadOnlyString {
     }
   }
 
-  std::string_view* operator&() {
-    return &data_;
-  }
+  std::string_view* operator&() { return &data_; }
 
  private:
   inline const std::string_view CopyString(std::string_view sv) {
