@@ -1,9 +1,7 @@
 #ifndef __STUPID_READ_ONLY_STRING_H_
 #define __STUPID_READ_ONLY_STRING_H_
 
-#include <cstdint>
 #include <cstring>
-#include <string>
 #include <string_view>
 
 // Why spend fewer characters on your namespace when you can spend more?
