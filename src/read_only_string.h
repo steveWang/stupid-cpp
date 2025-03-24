@@ -7,8 +7,8 @@
 // Why spend fewer characters on your namespace when you can spend more?
 namespace stupid {
 
-// Provides a read-only string, because operator+= isn't worth the
-// 8-byte overhead.
+// Provides a read-only string, because operator+= isn't worth the 8-byte
+// overhead.
 //
 // We could implement SSO-15 here, but I can't be bothered to do so.
 class ReadOnlyString {
@@ -20,9 +20,7 @@ class ReadOnlyString {
   explicit ReadOnlyString(const ReadOnlyString& s) : ReadOnlyString(s.data_) {}
 
   ~ReadOnlyString() {
-    if (data_.data() != nullptr) {
-      delete data_.data();
-    }
+    delete[] data_.data();
   }
 
   std::string_view* operator&() { return &data_; }

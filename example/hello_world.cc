@@ -4,5 +4,5 @@
 
 int main() {
   stupid::ReadOnlyString str = "hello world";
-  std::cout << *(&str) << std::endl;
+  std::cout << *&str << std::endl;
 }
