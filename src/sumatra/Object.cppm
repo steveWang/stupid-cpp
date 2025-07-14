@@ -1,5 +1,6 @@
 module;
 
+#include <cstddef>
 #include <format>
 #include <memory>
 #include <string>
@@ -11,12 +12,12 @@ export class Object {
   Object() = default;
   Object(std::shared_ptr<void> data) : data_(data) {}
 
-  virtual int hashCode() const {
-    return static_cast<int>(reinterpret_cast<long long>(this));
+  virtual size_t hashCode() const {
+    return static_cast<int>(reinterpret_cast<size_t>(this));
   }
 
   virtual std::string toString() const {
-    return std::format("%s#%x", typeid(this).name(), hashCode());
+    return std::format("{}#{:0x}", typeid(this).name(), hashCode());
   }
 
   bool equals(const Object& o) const {

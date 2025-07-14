@@ -3,7 +3,7 @@ module;
 #include <iostream>
 #include <string>
 
-import String;
+import Object;
 
 export module System.out.println;
 
@@ -11,7 +11,7 @@ class _system {
  private:
   class Out {
    public:
-    void println(const String& s) {
+    void println(const Object& s) {
       std::cout << s.toString() << "\n";
     }
   };

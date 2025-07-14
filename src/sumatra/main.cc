@@ -10,8 +10,10 @@ int main() {
   String t = new String(data);
   String u = new String();
   String v;
+  Object o;
   System.out.println(s);
   System.out.println(t);
   System.out.println(u);
+  System.out.println(o);
   std::cout << (v == null) << std::endl;
 }
