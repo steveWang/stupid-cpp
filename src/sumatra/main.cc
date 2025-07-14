@@ -1,7 +1,6 @@
 #include <iostream>
 
-import Object;
-import String;
+import sumatra;
 import System.out.println;
 
 int main() {
@@ -12,10 +11,17 @@ int main() {
   String u = new String();
   String v;
   Object o;
+  Object o2 = new String("abc");
+  // "hello world"
   System.out.println(s);
+  // "abc"
   System.out.println(t);
+  // ""
   System.out.println(u);
+  // null
   System.out.println(o);
+  // PKW6Object6Object#<some hex digits>
+  System.out.println(o2);
   std::cout << (v == null) << std::endl;
   std::cout << (s.equals(s2)) << std::endl;
 }

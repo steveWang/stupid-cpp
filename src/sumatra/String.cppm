@@ -14,9 +14,11 @@ export class String : public Object {
       reinterpret_cast<size_t>(this) >> 40 != 0x7f
       ? std::make_shared<std::string>("")
       : nullptr) {}
+  String(String* s) : Object(s->data_) {
+    delete s;
+  }
 
   String(const char data[]) : Object(std::make_shared<std::string>(data)) {}
-  String(String* data) : Object(data->data_) {}
   String(const String& s) : Object(s.data_) {}
 
   std::string toString() const override {
@@ -27,6 +29,6 @@ export class String : public Object {
     if (const String* s = dynamic_cast<const String*>(&o); s != nullptr) {
       return toString() == s->toString();
     }
-    return false;
+    return *this == null && o == null;
   }
 };

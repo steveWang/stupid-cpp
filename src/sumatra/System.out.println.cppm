@@ -3,7 +3,7 @@ module;
 #include <iostream>
 #include <string>
 
-import Object;
+import sumatra;
 
 export module System.out.println;
 
