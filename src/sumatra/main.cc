@@ -1,5 +1,6 @@
 #include <iostream>
 
+import Object;
 import String;
 import System.out.println;
 
@@ -13,5 +14,4 @@ int main() {
   System.out.println(t);
   System.out.println(u);
   std::cout << (v == null) << std::endl;
-  return 0;
 }

@@ -1,6 +1,7 @@
 module;
 
 #include <iostream>
+#include <string>
 
 import String;
 
