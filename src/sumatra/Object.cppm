@@ -20,7 +20,7 @@ export class Object {
     return std::format("{}#{:0x}", typeid(this).name(), hashCode());
   }
 
-  bool equals(const Object& o) const {
+  virtual bool equals(const Object& o) const {
     return *this == o;
   }
 

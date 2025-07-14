@@ -22,4 +22,11 @@ export class String : public Object {
   std::string toString() const override {
     return *reinterpret_cast<std::string*>(String::data_.get());
   }
+
+  bool equals(const Object& o) const override {
+    if (const String* s = dynamic_cast<const String*>(&o); s != nullptr) {
+      return toString() == s->toString();
+    }
+    return false;
+  }
 };
