@@ -6,6 +6,7 @@ module;
 
 export module String;
 
+import base;
 import Object;
 
 export class String : public Object {
@@ -25,10 +26,10 @@ export class String : public Object {
     return *reinterpret_cast<std::string*>(String::data_.get());
   }
 
-  bool equals(const Object& o) const override {
+  boolean equals(const Object& o) const override {
     if (const String* s = dynamic_cast<const String*>(&o); s != nullptr) {
-      return toString() == s->toString();
+      return boolean(toString() == s->toString());
     }
-    return *this == null && o == null;
+    return boolean(*this == null && o == null);
   }
 };

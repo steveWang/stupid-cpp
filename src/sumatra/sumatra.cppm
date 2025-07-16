@@ -1,4 +1,6 @@
 export module sumatra;
 
-export import String;
+export import Boolean;
 export import Object;
+export import String;
+

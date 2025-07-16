@@ -7,6 +7,8 @@ module;
 
 export module Object;
 
+import base;
+
 export class Object {
  public:
   Object() {}
@@ -26,15 +28,15 @@ export class Object {
     return std::format("{}#{:0x}", typeid(this).name(), hashCode());
   }
 
-  virtual bool equals(const Object& o) const {
-    return *this == o;
+  virtual boolean equals(const Object& o) const {
+    return boolean(*this == o);
   }
 
-  bool operator==(const Object& o) const {
+  boolean operator==(const Object& o) const {
     if (data_ == nullptr) {
-      return o.data_ == nullptr;
+      return boolean(o.data_ == nullptr);
     }
-    return data_ == o.data_;
+    return boolean(data_ == o.data_);
   }
 
  protected:

@@ -1,5 +1,3 @@
-#include <iostream>
-
 import sumatra;
 import System.out.println;
 
@@ -22,6 +20,12 @@ int main() {
   System.out.println(o);
   // PKW6Object6Object#<some hex digits>
   System.out.println(o2);
-  std::cout << (v == null) << std::endl;
-  std::cout << (s.equals(s2)) << std::endl;
+  // true
+  System.out.println(v == null);
+  // true
+  System.out.println(s.equals(s2));
+  // false
+  System.out.println(s == s2);
+  // false
+  System.out.println(s.equals(t));
 }
