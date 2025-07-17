@@ -6,23 +6,15 @@ all: main
 clean:
 	rm -f *.pcm *.o main
 
-base.pcm: base.cppm
-	${CC} ${CCFLAGS} --precompile base.cppm
+%.pcm: %.cppm
+	${CC} ${CCFLAGS} --precompile $<
 
-Object.pcm: Object.cppm base.pcm
-	${CC} ${CCFLAGS} --precompile Object.cppm
+sumatra.pcm: Object.pcm String.pcm Boolean.pcm
 
-Boolean.pcm: Boolean.cppm Object.pcm
-	${CC} ${CCFLAGS} --precompile Boolean.cppm
-
-String.pcm: String.cppm Object.pcm
-	${CC} ${CCFLAGS} --precompile String.cppm
-
-sumatra.pcm: sumatra.cppm Object.pcm String.pcm Boolean.pcm
-	${CC} ${CCFLAGS} --precompile sumatra.cppm
-
-System.out.println.pcm: sumatra.pcm System.out.println.cppm
-	${CC} ${CCFLAGS} --precompile System.out.println.cppm
+Object.pcm: base.pcm
+Boolean.pcm: Object.pcm
+String.pcm: Object.pcm
+System.out.println.pcm: sumatra.pcm
 
 main: main.cc sumatra.pcm System.out.println.pcm Boolean.pcm
 	${CC} ${CCFLAGS} main.cc *.pcm -o main
